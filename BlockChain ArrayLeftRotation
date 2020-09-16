@@ -1,0 +1,46 @@
+public class BlockChainArray
+{
+    static void leftRotate(int arr[],int d,int n)
+    {
+        leftRotateRecursion(arr,0,d,n);
+    }
+    static void leftRotateRecursion(int arr[],int i,int d, int n)
+    {   
+        if(d==0 || d==n)
+            return;
+        if(d==n-d)
+        {    swap(arr,i,n-d+i,d);
+             return;
+        }
+        if(d<n-d)
+        {   swap(arr,i,n-d+i,d);
+            leftRotateRecursion(arr,i,d,n-d);
+        }
+        else
+        {  swap(arr,i,d,n-d);
+            leftRotateRecursion(arr,n-d+i,2*d-n,d);
+        }
+    }
+   static void swap(int arr[],int fi,int si,int d)
+    { int i,temp;
+        for(i=0;i<d;i++)
+        { temp=arr[fi+i];
+          arr[fi+i]=arr[si+i];
+          arr[si+i]=temp;
+        }
+    }
+   static void printArray(int arr[],int n)
+    {  int i;
+        for(i=0;i<n;i++)
+        {
+            System.out.print(arr[i]+ " ");
+            
+        }
+    }
+    public static void main(String[] args)
+    {  int[] arr={1,2,3,4,5,6,7};
+       int n=arr.length;
+        leftRotate(arr,2,n);
+        printArray(arr,n);
+    }
+}
