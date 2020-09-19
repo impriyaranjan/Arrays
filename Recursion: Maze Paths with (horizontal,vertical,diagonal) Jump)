@@ -1,0 +1,42 @@
+import java.util.ArrayList;    //Maze Path with jump(horizontal,vertical, diagonal)
+public class GetMazePath         //only horizontall or verticle move allowed;
+{
+    public static void main(String[] args)
+    {
+        ArrayList<String> paths=getMazePaths(0,0,3,3);
+        System.out.println(paths);
+         System.out.print("No of Possible Moves: "+paths.size());
+    }
+    static ArrayList<String> getMazePaths(int sm,int sn,int m,int n)
+    {   if(sm==m-1 && sn==n-1)
+        {  ArrayList<String> bres=new ArrayList<>();
+           bres.add("");
+           return bres;
+        }
+        ArrayList<String> paths=new ArrayList<>();
+         //horizontal moves
+         for(int ms=1;ms<=n-sn;ms++)
+         { ArrayList<String> hpaths=getMazePaths(sm,sn+ms,m,n);
+            for(String hpath:hpaths)
+           { paths.add("h"+ms+hpath);
+           } 
+         }
+         //vertical  moves
+         for(int ms=1;ms<=m-sm;ms++)
+         { ArrayList<String> vpaths=getMazePaths(sm+ms,sn,m,n);
+            for(String vpath:vpaths)
+           { paths.add("v"+ms+vpath);
+           } 
+         }
+         //Diagonal moves
+         for(int ms=1;ms<=m-sm && ms<=n-sn;ms++)
+         { ArrayList<String> dpaths=getMazePaths(sm+ms,sn+ms,m,n);
+            for(String dpath:dpaths)
+           { paths.add("d"+ms+dpath);
+           } 
+         }
+     
+        return paths;
+    }
+    
+}
