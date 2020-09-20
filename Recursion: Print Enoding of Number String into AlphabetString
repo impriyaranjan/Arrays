@@ -1,0 +1,45 @@
+public class PrintEncoding
+{   
+    public static void main(String[] args)
+    {
+        printEncoding("1234864","");
+       
+    }
+   static void printEncoding(String ques,String ans)
+    {   if(ques.length()==0)               //completed
+        {   System.out.println(ans);
+            return;
+        }
+        else if(ques.length()==1)           //one char in tree;
+        {   char ch=ques.charAt(0);
+            if(ch=='0')
+                return;
+            else                       //if ch= '3' (String); (say). 
+            {   int chv=ch-'0';          // we get chv=3 ; & have to find alphabet at 3;
+                char code=(char)('a'+ chv-1);    // if 1-->a then 3-->? ;; 3-->'a'+(chv-1)(2)
+                //ans=ans+code;
+                System.out.println(ans+code);
+            }
+        }
+        else             //ques length= 2 or more.
+        {   char ch=ques.charAt(0);        // for tree traversal one code at a time;  
+            String roq=ques.substring(1);
+            if(ch=='0')                    // ch='0' for roq 033 ;
+                return;
+            else                          //ch='1' for roq 123 ;
+            {   int chv=ch-'0';          
+                char code=(char)('a'+chv-1);     //'1'--> 1 --> corresponding code;
+                printEncoding(roq,ans+code);
+            }
+            String ch12= ques.substring(0,2);   // for tree traversal two code at a time;
+            String roq12= ques.substring(2);
+            
+            int ch12v= Integer.parseInt(ch12);   // '23'---> 23 ;
+            if(ch12v<=26)                        //a to z== 26 character;
+            {  char code= (char)('a'+ ch12v-1);
+                printEncoding(roq12,ans+code);
+            }
+        }
+    }
+    
+}
