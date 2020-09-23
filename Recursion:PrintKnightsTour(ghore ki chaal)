@@ -1,0 +1,40 @@
+public class PrintKnightsTour
+{
+    public static void main(String[] args)
+    { int n=5;
+      int r=2;
+      int c=2;
+      int[][] chess=new int[n][n];
+      printKnightsTour(chess,r,c,1,"");     //,""  another option.
+    }
+   /*static void displayBoard(int[][] chess)
+    { for(int i=0;i<chess.length;i++)
+      { for(int j=0;j<chess[0].length;j++)
+            System.out.print(chess[i][j]+" ");
+        
+        System.out.println();  
+      }                                                  //,String ans) another option.
+    }*/
+    static void printKnightsTour(int[][] chess,int r,int c,int move,String ans)
+    {   if(r<0||c<0||r>=chess.length||c>=chess[0].length||chess[r][c]>0)
+            return;
+        else if(move==chess.length*chess[0].length)
+        { chess[r][c]=move;
+         // displayBoard(chess);
+         System.out.println("{"+ans+"("+r+","+c+")"+"}");
+          chess[r][c]=0;
+            return;            
+        }                                //,ans+"("+r+","+c+")" another option.
+        
+        chess[r][c]=move;
+        printKnightsTour(chess,r-2,c+1,move+1,ans+"("+r+","+c+"),");
+        printKnightsTour(chess,r-1,c+2,move+1,ans+"("+r+","+c+"),");
+        printKnightsTour(chess,r+1,c+2,move+1,ans+"("+r+","+c+"),");
+        printKnightsTour(chess,r+2,c+1,move+1,ans+"("+r+","+c+"),");
+        printKnightsTour(chess,r+2,c-1,move+1,ans+"("+r+","+c+"),");
+        printKnightsTour(chess,r+1,c-2,move+1,ans+"("+r+","+c+"),");
+        printKnightsTour(chess,r-1,c-2,move+1,ans+"("+r+","+c+"),");
+        printKnightsTour(chess,r-2,c-1,move+1,ans+"("+r+","+c+"),");
+        chess[r][c]=0;
+    }
+}
