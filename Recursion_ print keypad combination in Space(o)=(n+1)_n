@@ -1,0 +1,21 @@
+public class PrintSubSequence
+{   static String[] codes={";","abc","def","ghi","jkl","mno","pqrs","tu","vwx","yz"};
+    public static void main(String[] args)
+    {
+        printKPC("678","");
+    }
+    static void printKPC(String ques,String ans)
+    {   if(ques.length()==0)
+        {  System.out.print(ans+" ");       // print ans i.e (ptv) according to euler path.
+            return;
+        }
+        char ch=ques.charAt(0);
+        String roq=ques.substring(1);      // 6--> pqrs
+        
+        String codeforch=codes[ch-'0'];         //store string for 1st character in codes{} list;
+        for(int i=0;i<codeforch.length();i++)    // n(pqrs)--> 4 times loop at zero level.
+        {  char chchar=codeforch.charAt(i);     // strore 1st char(p).
+            printKPC(roq,ans+chchar);         // recursive call(subtring pass to next level) & add 1st char(p) likewise to next level.
+        }      
+    }    
+}

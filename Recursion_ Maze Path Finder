@@ -1,0 +1,34 @@
+import java.util.ArrayList;
+public class GetMazePath         //only horizontall or verticle move allowed;
+{
+    public static void main(String[] args)
+    {
+        ArrayList<String> paths=getMazePaths(0,0,4,4);
+        System.out.print(paths);
+    }
+    
+    static ArrayList<String> getMazePaths(int sm,int sn,int m,int n)
+    {   if(sm==m-1 && sn==n-1)
+        {  ArrayList<String> bres=new ArrayList<>();
+           bres.add("");
+           return bres;
+        }
+       
+        ArrayList<String> pathshorizontal=new ArrayList<>();
+         ArrayList<String> pathsvertical=new ArrayList<>();
+         if(sn<n)                                    //move horizontal(right) upto wall then start moving vertically.
+         {  pathshorizontal=getMazePaths(sm,sn+1,m,n);
+         }
+         if(sm<m)                                  //move vertical(Down) upto wall then start moving horizontally.
+         {  pathsvertical=getMazePaths(sm+1,sn,m,n);
+         }
+          ArrayList<String> paths=new ArrayList<>();
+          for(String path:pathshorizontal)
+           { paths.add("h"+path);}
+           for(String path:pathsvertical)
+           { paths.add("v"+path);}
+           
+        return paths;
+    }
+    
+}

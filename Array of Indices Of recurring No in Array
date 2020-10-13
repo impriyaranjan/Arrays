@@ -1,0 +1,26 @@
+public class Recursion{
+    
+    public static void main(String[] args)
+    {  int[] arr={3,4,47,3,50,3,21};
+       // int n=arr.length;
+        int[] b=allindices(arr,3,0,0);
+        for(int i=0;i<b.length;i++)
+            System.out.print(b[i]+" ");
+    }
+    static int[] allindices(int[] a,int x,int index,int fsf)
+    {   if(index==a.length)
+            return new int[fsf];
+        if(a[index]==x)    
+        {   int[] iarr=allindices(a,x,index+1,fsf+1);
+            iarr[fsf]=index;
+            return iarr;
+        }
+        else
+        {   int[] iarr=allindices(a,x,index+1,fsf);
+            return iarr;
+            
+        }
+       
+    }
+    
+}

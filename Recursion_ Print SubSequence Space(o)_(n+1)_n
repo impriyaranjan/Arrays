@@ -1,0 +1,18 @@
+public class PrintSubSequence
+{
+    public static void main(String[] args)
+    {
+        printSubSequence("abc","");
+    }
+    static void printSubSequence(String ques,String ans)
+    {   if(ques.length()==0)
+        {  System.out.print(ans+" ");
+            return;
+        }
+        char ch=ques.charAt(0);
+        String roq=ques.substring(1);
+        
+        printSubSequence(roq,ans+ch);
+         printSubSequence(roq,ans+"");
+    }   
+}

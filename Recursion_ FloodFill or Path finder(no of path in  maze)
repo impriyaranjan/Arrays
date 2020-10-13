@@ -1,0 +1,25 @@
+public class Floodfill
+{
+    public static void main(String[] args) throws Exception
+    {
+        int[][] arr={{0,1,0,0,0,0,0},{0,1,0,1,1,1,0},{0,0,0,0,0,0,0},{1,0,1,1,0,1,1},{1,0,1,1,0,1,1},{1,0,0,0,0,0,0}};
+        boolean[][] visited=new boolean[6][7];
+        floodFill(arr,0,0,"",visited);
+    }
+    public static void floodFill(int[][] maze,int row,int col,String ans,boolean[][] visited)
+    
+    {  if(row<0 || col<0 || row==maze.length || col==maze[0].length || maze[row][col]==1 || visited[row][col]==true)
+      { return;           //limitation wall,obstacles & visited node(Box) ;
+      }
+      if(row==maze.length-1 && col==maze[0].length-1)
+      {  System.out.println(ans);
+          return;
+      }
+        visited[row][col]=true;
+        floodFill(maze,row-1,col,ans+"t",visited);
+        floodFill(maze,row,col-1,ans+"l",visited);
+        floodFill(maze,row+1,col,ans+"d",visited);
+        floodFill(maze,row,col+1,ans+"r",visited);
+         visited[row][col]=false;       
+    }    
+}
